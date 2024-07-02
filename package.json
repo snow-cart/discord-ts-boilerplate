@@ -1,0 +1,23 @@
+{
+	"name": "discord-ts-boilerplate",
+	"version": "0.1.0",
+	"description": "First attempt at a discord bot",
+	"main": "src/index.ts",
+	"author": "snow-cart",
+	"license": "MIT",
+	"private": true,
+	"dependencies": {
+		"discord-api-types": "^0.37.91",
+		"discord.js": "^14.15.3",
+		"dotenv": "^16.4.5",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.5.3"
+	},
+	"scripts": {
+		"start": "yarn build && yarn start:rest && yarn start:client",
+		"start:client": "node ./build/index.js",
+		"start:rest": "node ./build/rest.js",
+		"build": "yarn tsc",
+		"dev": ""
+	}
+}

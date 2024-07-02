@@ -15,7 +15,8 @@ discordClient.on("ready", () => {
 discordClient.on("interactionCreate", async (interaction) => {
 	if (!interaction.isChatInputCommand()) return;
 
-	commands(interaction.commandName, interaction);
+	const consoleOutput = commands(interaction.commandName, interaction);
+	consoleOutput && console.log(consoleOutput);
 });
 
 discordClient.login(DISCORD_TOKEN);

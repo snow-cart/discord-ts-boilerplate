@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction, CacheType } from "discord.js";
-import { CommandStruct, CommandOptStruct } from "./types";
+import { CommandStruct } from "./types";
 
 const command = (interaction: ChatInputCommandInteraction<CacheType>) => {
 	const text = interaction.options.get("text", false)?.value;
@@ -12,11 +12,11 @@ const json = new CommandStruct({
 	description: "Replies with pong!",
 	type: "CHAT_INPUT",
 	options: [
-		new CommandOptStruct({
+		{
 			name: "text",
 			description: "Some text which will be included with your ping!",
 			type: "STRING",
-		}),
+		},
 	],
 });
 

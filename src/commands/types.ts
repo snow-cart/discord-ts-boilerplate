@@ -9,10 +9,11 @@ import { Snowflake } from "discord.js";
  * @param {("GUILD" | "BOT_DM" | "GROUP_DM")[]} contexts - List of contexts where command is available
  */
 export class CommandStruct {
-	constructor({ name, description, type = 1, contexts, ...rest }: CommandStruct) {
+	constructor({ name, description, type = 1, options, contexts, ...rest }: CommandStruct) {
 		this.name = name;
 		this.description = description;
 		this.type = commandTypeFactory(type);
+		this.options = commandOptFactory(options);
 		this.contexts = contextTypeFactory(contexts);
 		Object.assign(this, rest);
 	}
@@ -109,6 +110,15 @@ export class CommandOptStruct {
 	max_length?: number;
 	autocomplete?: boolean;
 }
+
+const commandOptFactory = (options: CommandOptStruct[] | undefined): CommandOptStruct[] | undefined => {
+	if (options === undefined) return undefined;
+	let outputArr: CommandOptStruct[] = [];
+	for (let i = 0; i < options.length; i++) {
+		outputArr.push(new CommandOptStruct({ ...options[i] }));
+	}
+	return outputArr;
+};
 
 type commandOptTypes =
 	| 1 //"SUB_COMMAND"
